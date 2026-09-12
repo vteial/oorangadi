@@ -1,0 +1,27 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.drift.dart"
+    - "lib/generated/**"
+    - "lib/l10n/**"
+    - "test/**"
+    - "integration_test/**"
+    - "test_driver/**"
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - macos/**
+    - linux/**
+    - windows/**
+
+linter:
+  rules:
+    lines_longer_than_80_chars: false
+    always_use_package_imports: true
+    public_member_api_docs: false
+    one_member_abstracts: false
+    sort_pub_dependencies: false
