@@ -1,0 +1,9 @@
+{
+  "ignoreCommand": "chmod +x ./ignore_build.sh && ./ignore_build.sh",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
