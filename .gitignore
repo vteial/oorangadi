@@ -18,6 +18,7 @@ dist/
 # IDE files
 .idea/
 .vscode/
+*.iml
 *.swp
 *.swo
 *~

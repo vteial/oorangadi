@@ -1,124 +1,71 @@
-# Project Blueprint
+# Oorangadi
 
-> A GitHub **template repository** for AI-assisted development — the proven operating
-> model distilled from a real, long-lived project, packaged so any new project can start
-> from it and customize on the go.
-
-**Tool-agnostic.** It describes **roles** (a planning/review agent + a coding/verify
-agent + the human lead), not specific tools — use [Kiro](https://kiro.dev), another AI
-coding tool, or work the conventions manually.
+> **Minimalistic Sales App** with a strict **local-first principle**, built on Flutter with **Web release as the MVP**.
 
 ---
 
-## Start here
+## Current Status
 
-1. **[`PRINCIPLES.md`](PRINCIPLES.md)** — the 5 load-bearing principles + the 4-flow spine. Read this first; everything else is elaboration.
-2. **[`tiers/README.md`](tiers/README.md)** — pick your starting point: **Core** (long-lived product) or **Min** (quick/mini/PoC). It's the same principles, more or less machinery.
-3. Use this template → fill placeholders → delete what you don't need.
+| | |
+| :--- | :--- |
+| **Version** | v0.1.0-alpha |
+| **Live** | Local Web / Vercel preview ready |
+| **Status** | 🚧 Sprint 0: Specification & Foundation Spike |
 
-## The 5 principles (in one breath)
-
-1. **The human is the sole merge & release authority** — agents open PRs, never merge/tag.
-2. **One source of truth per fact** — docs delegate, they don't duplicate (rot lives in copies).
-3. **Transactional artifacts + a freshness stamp** — versioned, human-ticked records; `> Reviewed: vX.Y.Z` on every durable doc.
-4. **Spec → implement → review** — plan writes the spec + green baseline, coder proves green locally, planner reviews the real diff.
-5. **Provenance** — every non-obvious rule cites its source, so quality is auditable.
-
-## The 4 flows
-
-| # | Flow | Universal? |
-|---|------|-----------|
-| 1 | **Knowledge Capture** (source → corpus) | Core-only (doctrine products) |
-| 2 | **Conflict Resolution** (reconcile the corpus) | Core-only |
-| 3 | **Feature / Engine Sprint** (spec → implement → review) | ✅ every project |
-| 4 | **Release** (smoke → promote → tag) | ✅ every project |
-
-Flows 3 & 4 are the tier floor; Flows 1 & 2 are what make a project **Core**. See
-[`PRINCIPLES.md`](PRINCIPLES.md#the-4-flow-spine).
+*Full backlog, architecture decisions, and roadmap: [`PROJECT.md`](PROJECT.md).*
 
 ---
 
-## Two tiers
+## Key Pillars
 
-| | **[Core](tiers/core/README.md)** | **[Min](tiers/min/README.md)** |
-| :--- | :--- | :--- |
-| For | Long-lived products | Quick / mini / PoC |
-| Docs | Full `docs/` set + dossiers + stamps + docs-audit | One `README` + one `PROJECT.md` |
-| Record | Sprint & release dossiers | The PR description (`Tested:`) |
-| Flows | All 4 | 3 & 4, collapsed |
+- ⚡ **Local-First & Offline-Ready** — Zero mandatory server, zero monthly hosting bills, instant query response. Data lives on your device in an embedded SQLite database running via WebAssembly (Drift WASM).
+- 🛒 **Frictionless Checkout** — Streamlined keyboard and touch-first sales counter designed for quick customer billing, barcode lookup, and instant receipt calculation.
+- 🔐 **Data Sovereignty** — You own your business numbers. One-click full JSON database export/import and sales ledger CSV reports.
+- 🌐 **Cross-Platform Foundation** — Built on Flutter 3.47+ with Web as the primary MVP target, sharing 100% of the core logic ready for desktop and mobile.
 
-**Graduation rule:** a Min project adopts a heavier Core practice the **first time it
-gets burned without it** — never preemptively. Start light; earn the weight.
+---
 
-## Usage
+## Getting Started
 
-- **Use as template (recommended)** — "Use this template" on GitHub → new repo with the
-  Core layout. Adopt Min by keeping only `tiers/min/`'s two skeletons.
-- **Cherry-pick** — just CI? `templates/ci/`. Just the workflow? `docs/process/dev-workflow.md`.
-- **Reference** — read `guides/` to understand the *why*, implement your own way.
+### Prerequisites
 
-## Repository Structure
+- Flutter SDK (stable channel, ≥3.44)
+- Dart SDK ≥3.12.1 (bundled with Flutter)
+- Google Chrome or Chromium (for Web execution and testing)
 
-```
-project-blueprint/
-├── PRINCIPLES.md                     # ★ the 5 principles + 4-flow spine (read first)
-├── tiers/
-│   ├── README.md                     # tier decision guide + graduation rule
-│   ├── core/README.md                # Core adoption
-│   └── min/                          # Min adoption + the two skeletons
-│       ├── README.md
-│       ├── PROJECT.skeleton.md
-│       └── README.skeleton.md
-├── docs/                             # Core doc set (grouped by context)
-│   ├── README.md                     # documentation index
-│   ├── process/                      # how we build & ship
-│   │   ├── dev-workflow.md           # protocols, CI gates, merge authority
-│   │   ├── sprint-tracker.md · sprint-backlog.md
-│   │   ├── project-valuation-report.md · project-evaluation.md
-│   │   ├── release-plan.md · spec-changelog.md
-│   │   ├── sprints/                  # per-sprint dossiers (Flow 3)
-│   │   └── templates/                # spec · impl-summary · test-summary · release-notes · docs-audit
-│   ├── product/                      # scope + user guide (add per project)
-│   ├── testing/                      # testing-plan, smoke-test-*, releases/ (Flow 4 dossiers)
-│   └── reference/                    # architecture, security-review
-├── guides/                           # deep "why & how" for each convention
-├── templates/                        # CI, lefthook, deployment, migrations
-├── .kiro/steering/                   # auto-loaded project context template
-├── .github/                          # PR + issue templates
-├── .gitignore · LICENSE · README.md
+### Installation & Run
+
+```bash
+# Clone repository
+git clone https://github.com/vteial/oorangadi.git
+
+# Install dependencies
+flutter pub get
+
+# Run on Web (Chrome)
+flutter run -d chrome
+
+# Build production web bundle
+flutter build web --release
 ```
 
-## Responsibility split (tool-agnostic)
+### Quality & Verification Checks
 
-| Concern | Coding/Verify agent | Planning/Review agent | Human |
-|---------|:-------------------:|:---------------------:|:-----:|
-| Code generation | ● | — | — |
-| Spec authoring | — | ● | approves |
-| PR creation | ● | ● | — |
-| PR review (real diff) | — | ● | final |
-| Merge & tag | — | — | ● (sole) |
-| Doctrine/priorities | — | scribes | ● (decides) |
+```bash
+# Analyze with strict lint rules (zero warnings allowed)
+dart analyze --fatal-infos
+
+# Run widget and unit tests
+flutter test
+```
 
 ---
 
-## Delta tracking (preserved convention)
+## How We Work
 
-Record WHAT changed (ADDED / MODIFIED / REMOVED) per sprint: the steering spec is
-updated in-place (current truth), the spec-changelog is appended (evolution history).
-See [`guides/10-delta-tracking.md`](guides/10-delta-tracking.md). This complements the
-sprint dossier — the dossier is *this sprint's* transactional record; the spec-changelog
-is the *cumulative* delta history.
+Branch → PR → **human merges** (the AI agent opens PRs but never merges or tags).  
+Each PR body states **what changed · why · how it was tested (`Tested:`)**.  
+Status, backlog, and architectural decisions live in [`PROJECT.md`](PROJECT.md).  
+Core load-bearing rules are defined in [`PRINCIPLES.md`](PRINCIPLES.md).
 
-## Quick Start (Core)
-
-- [ ] Create repo from template
-- [ ] Read `PRINCIPLES.md`; pick a tier in `tiers/README.md`
-- [ ] Fill `.kiro/steering/project-spec-template.md` placeholders
-- [ ] Add `AI_COLLABORATION_FRAMEWORK.md` (name your two agent tools)
-- [ ] Pick CI from `templates/ci/` → `.github/workflows/`
-- [ ] Seed Sprint 0 in `docs/process/sprint-tracker.md`
-- [ ] `/sprint-start 1`
-
-## License
-
-MIT — See [LICENSE](./LICENSE)
+> Started from [`vteial/project-blueprint`](https://github.com/vteial/project-blueprint) (**Min** tier).
